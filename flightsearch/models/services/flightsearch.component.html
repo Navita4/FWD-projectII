@@ -1,0 +1,65 @@
+<div class="bodyPadding">
+    <div class="row">
+        <span class="col-xs-12">Welcome to the VISTARA airlines flight Search page!</span>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 verticalAlign">
+            <span>Departing Airport:</span>
+            <select[(ngModel)]="airport selectionFrom" id="airportSelect">
+                <option *ngFor="let airport of currentAirports"
+                [ngValue]="airport.Code">{{airport.Code}}-{{airport.Name}}</option>
+            </select>
+        </div>
+        <div class="col-xs-4 verticalAlign">
+                <span>Arriving Airport:</span>
+                <select[(ngModel)]="airport selectionTo" id="airportSelect">
+                    <option *ngFor="let airport of currentAirports"
+                    [ngValue]="airport.Code">{{airport.Code}}-{{airport.Name}}</option>
+                </select>
+            </div>
+            <div class="col-xs-1">
+                <a id="SelectButton" class="btn btn-primary"(click)="chooseFlight()"> Show flight</a>
+            </div>
+    </div>
+    <div class="row noMarginLeft">
+        <span class="text-danger"[hidden]="differentSelection">You cannot depart from and arrieve to the same airport!</span>
+    </div>
+    <div *ngIf="!hideResultDataTable">
+        <span class="row">click headings to sort the list ascending</span>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th(click)="SortBy('FlightNumber')">FlightNumber</th>
+                        <th(click)="SortBy('Departs')">Departs</th>
+                        <th(click)="SortBy('Arrieves')">Arrieves</th>
+                        <th(click)="SortBy('MainCabinPrice')">MainCabinPrice</th>
+                        <th(click)="SortBy('FirstClassPrice')">FirstClassPrice</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr *ngFor="let flight of currentSearchSelection">
+                    <th>{{flight.FlightNumber}}</th>
+                    <th>{{flight.Departs}}</th>
+                    <th>{{flight.Arrieves}}</th>
+                    <th>{{flight.MainCabinPrice|currency:'USD':'symbol':'1.2-2'}}</th>
+                    <th>{{flight.FirstClassPrice|currency:'USD':'symbol':'1.2-2'}}</th>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+                        
+                        
+                        
+                        
+                        
+
+
+
+
+
+
+
+
